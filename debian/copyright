@@ -180,15 +180,6 @@ License: BSD-3-clause
  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  SUCH DAMAGE.
 
-Files: md5crypt.*
-Copyright: Poul-Henning Kamp
-License: Beer-ware
- "THE BEER-WARE LICENSE" (Revision 42):
- <phk@login.dknet.dk> wrote this file.  As long as you retain this
- notice you can do whatever you want with this stuff. If we meet
- some day, and you think this stuff is worth it, you can buy me a
- beer in return.   Poul-Henning Kamp
-
 Files: openbsd-compat/bsd-snprintf.c
 Copyright: 1995 Patrick Powell
 License: Powell-BSD-style

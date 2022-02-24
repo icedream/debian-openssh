@@ -1,4 +1,4 @@
-From 8e4773ed47ea6e24d877416c70f412de3cebdd10 Mon Sep 17 00:00:00 2001
+From b73dd269bd621b0ad8970b14dd219d7a7c623ab9 Mon Sep 17 00:00:00 2001
 From: Colin Watson <cjwatson@debian.org>
 Date: Tue, 7 Oct 2014 13:22:41 +0100
 Subject: Restore TCP wrappers support
@@ -18,7 +18,7 @@ but it at least probably doesn't involve dropping this feature shortly
 before a freeze.
 
 Forwarded: not-needed
-Last-Update: 2019-06-05
+Last-Update: 2022-02-23
 
 Patch-Name: restore-tcp-wrappers.patch
 ---
@@ -28,10 +28,10 @@ Patch-Name: restore-tcp-wrappers.patch
  3 files changed, 89 insertions(+)
 
 diff --git a/configure.ac b/configure.ac
-index 29de0ef0f..5f9747fcb 100644
+index b2489f884..b01a266b6 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -1601,6 +1601,62 @@ else
+@@ -1623,6 +1623,62 @@ else
  	AC_MSG_RESULT([no])
  fi
  
@@ -94,14 +94,14 @@ index 29de0ef0f..5f9747fcb 100644
  # Check whether user wants to use ldns
  LDNS_MSG="no"
  AC_ARG_WITH(ldns,
-@@ -5582,6 +5638,7 @@ echo "                       PAM support: $PAM_MSG"
+@@ -5617,6 +5673,7 @@ echo "                       PAM support: $PAM_MSG"
  echo "                   OSF SIA support: $SIA_MSG"
  echo "                 KerberosV support: $KRB5_MSG"
  echo "                   SELinux support: $SELINUX_MSG"
 +echo "              TCP Wrappers support: $TCPW_MSG"
- echo "              MD5 password support: $MD5_MSG"
  echo "                   libedit support: $LIBEDIT_MSG"
  echo "                   libldns support: $LDNS_MSG"
+ echo "  Solaris process contract support: $SPC_MSG"
 diff --git a/sshd.8 b/sshd.8
 index ef38949a2..9c5c01e9d 100644
 --- a/sshd.8
@@ -128,10 +128,10 @@ index ef38949a2..9c5c01e9d 100644
  .Xr moduli 5 ,
  .Xr sshd_config 5 ,
 diff --git a/sshd.c b/sshd.c
-index eb884efd9..4db3310f9 100644
+index 6a6cc4a8e..1279014c7 100644
 --- a/sshd.c
 +++ b/sshd.c
-@@ -126,6 +126,13 @@
+@@ -129,6 +129,13 @@
  #include "srclimit.h"
  #include "dh.h"
  
@@ -145,7 +145,7 @@ index eb884efd9..4db3310f9 100644
  /* Re-exec fds */
  #define REEXEC_DEVCRYPTO_RESERVED_FD	(STDERR_FILENO + 1)
  #define REEXEC_STARTUP_PIPE_FD		(STDERR_FILENO + 2)
-@@ -2179,6 +2186,24 @@ main(int ac, char **av)
+@@ -2169,6 +2176,24 @@ main(int ac, char **av)
  #ifdef SSH_AUDIT_EVENTS
  	audit_connection_from(remote_ip, remote_port);
  #endif

@@ -1,4 +1,4 @@
-From 590c9c939eb51b0a163196e64d9bfe1d2d739702 Mon Sep 17 00:00:00 2001
+From f82aa722d9b56a8bc24afd05b8b9136844381ef1 Mon Sep 17 00:00:00 2001
 From: Richard Kettlewell <rjk@greenend.org.uk>
 Date: Sun, 9 Feb 2014 16:09:52 +0000
 Subject: Various keepalive extensions
@@ -26,7 +26,7 @@ Patch-Name: keepalive-extensions.patch
  3 files changed, 34 insertions(+), 4 deletions(-)
 
 diff --git a/readconf.c b/readconf.c
-index f81f26b1f..12cfcca5d 100644
+index 0c268700a..785943642 100644
 --- a/readconf.c
 +++ b/readconf.c
 @@ -178,6 +178,7 @@ typedef enum {
@@ -46,7 +46,7 @@ index f81f26b1f..12cfcca5d 100644
  
  	{ NULL, oBadOption }
  };
-@@ -1760,6 +1763,8 @@ parse_pubkey_algos:
+@@ -1769,6 +1772,8 @@ parse_pubkey_algos:
  		goto parse_flag;
  
  	case oServerAliveInterval:
@@ -55,7 +55,7 @@ index f81f26b1f..12cfcca5d 100644
  		intptr = &options->server_alive_interval;
  		goto parse_time;
  
-@@ -2642,8 +2647,13 @@ fill_default_options(Options * options)
+@@ -2651,8 +2656,13 @@ fill_default_options(Options * options)
  		options->rekey_interval = 0;
  	if (options->verify_host_key_dns == -1)
  		options->verify_host_key_dns = 0;
@@ -72,7 +72,7 @@ index f81f26b1f..12cfcca5d 100644
  		options->server_alive_count_max = 3;
  	if (options->control_master == -1)
 diff --git a/ssh_config.5 b/ssh_config.5
-index 2bac0a755..1232e35bb 100644
+index 6984118ce..bc3afe2d8 100644
 --- a/ssh_config.5
 +++ b/ssh_config.5
 @@ -275,9 +275,13 @@ If set to
@@ -90,7 +90,7 @@ index 2bac0a755..1232e35bb 100644
  The argument must be
  .Cm yes
  or
-@@ -1765,7 +1769,14 @@ from the server,
+@@ -1773,7 +1777,14 @@ from the server,
  will send a message through the encrypted
  channel to request a response from the server.
  The default
@@ -106,7 +106,7 @@ index 2bac0a755..1232e35bb 100644
  .It Cm SessionType
  May be used to either request invocation of a subsystem on the remote system,
  or to prevent the execution of a remote command at all.
-@@ -1879,6 +1890,12 @@ Specifies whether the system should send TCP keepalive messages to the
+@@ -1887,6 +1898,12 @@ Specifies whether the system should send TCP keepalive messages to the
  other side.
  If they are sent, death of the connection or crash of one
  of the machines will be properly noticed.
@@ -120,10 +120,10 @@ index 2bac0a755..1232e35bb 100644
  connections will die if the route is down temporarily, and some people
  find it annoying.
 diff --git a/sshd_config.5 b/sshd_config.5
-index 6076df94f..a25cd94a7 100644
+index 771a58628..8f262365d 100644
 --- a/sshd_config.5
 +++ b/sshd_config.5
-@@ -1748,6 +1748,9 @@ This avoids infinitely hanging sessions.
+@@ -1749,6 +1749,9 @@ This avoids infinitely hanging sessions.
  .Pp
  To disable TCP keepalive messages, the value should be set to
  .Cm no .
