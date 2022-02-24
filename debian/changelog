@@ -1,4 +1,4 @@
-openssh (1:8.9p1-1) UNRELEASED; urgency=medium
+openssh (1:8.9p1-1) unstable; urgency=medium
 
   * New upstream release (https://www.openssh.com/releasenotes.html#8.9p1):
     - sshd(8): fix an integer overflow in the user authentication path that,
@@ -116,7 +116,7 @@ openssh (1:8.9p1-1) UNRELEASED; urgency=medium
   * Drop patch to work around https://twistedmatrix.com/trac/ticket/9515,
     since the fix for that is in Debian stable.
 
- -- Colin Watson <cjwatson@debian.org>  Wed, 23 Feb 2022 19:08:21 +0000
+ -- Colin Watson <cjwatson@debian.org>  Thu, 24 Feb 2022 11:06:15 +0000
 
 openssh (1:8.8p1-1) unstable; urgency=medium
 
