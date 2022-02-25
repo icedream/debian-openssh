@@ -1,0 +1,30 @@
+From 37625e373c6d3dcc550fbf715fb54c0e54380143 Mon Sep 17 00:00:00 2001
+From: Patrick McLean <chutzpah@gentoo.org>
+Date: Fri, 25 Feb 2022 23:26:50 +0000
+Subject: Allow ppoll_time64 in seccomp filter
+
+Origin: other, https://bugzilla.mindrot.org/attachment.cgi?id=3574&action=diff
+Bug: https://bugzilla.mindrot.org/show_bug.cgi?id=3396
+Bug-Debian: https://bugs.debian.org/1006445
+Author: Paul Brook <paul@nowt.org>
+Last-Update: 2022-02-25
+
+Patch-Name: sandbox-ppoll_time64.patch
+---
+ sandbox-seccomp-filter.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/sandbox-seccomp-filter.c b/sandbox-seccomp-filter.c
+index 2e065ba3e..4ce80cb2a 100644
+--- a/sandbox-seccomp-filter.c
++++ b/sandbox-seccomp-filter.c
+@@ -276,6 +276,9 @@ static const struct sock_filter preauth_insns[] = {
+ #ifdef __NR_ppoll
+ 	SC_ALLOW(__NR_ppoll),
+ #endif
++#ifdef __NR_ppoll_time64
++	SC_ALLOW(__NR_ppoll_time64),
++#endif
+ #ifdef __NR_poll
+ 	SC_ALLOW(__NR_poll),
+ #endif

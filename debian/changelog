@@ -1,3 +1,9 @@
+openssh (1:8.9p1-3) UNRELEASED; urgency=medium
+
+  * Allow ppoll_time64 in seccomp filter (closes: #1006445).
+
+ -- Colin Watson <cjwatson@debian.org>  Fri, 25 Feb 2022 23:29:05 +0000
+
 openssh (1:8.9p1-2) unstable; urgency=medium
 
   * Improve detection of -fzero-call-used-regs=all support.
