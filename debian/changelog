@@ -1,8 +1,10 @@
-openssh (1:8.9p1-3ppa~focal1) no-change; urgency=low
+openssh (1:8.9p1-3ppa~focal1) focal; urgency=medium
 
   * Backport to focal.
   * Revert use of dh_installalternatives.
   * Revert upgrade to debhelper v13.
+  * Revert requirement of libfido2 1.5.0 or newer, this will reduce or remove
+    security key functionality to allow a full backport.
 
  -- Carl Kittelberger <icedream@icedream.pw>  Sun, 01 May 2022 21:43:06 +0200
 
