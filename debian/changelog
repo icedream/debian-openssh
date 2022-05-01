@@ -1,6 +1,7 @@
 openssh (1:8.9p1-3ppa~focal1) no-change; urgency=low
 
-  * backport to focal
+  * Backport to focal.
+  * Revert use of dh_installalternatives.
 
  -- Carl Kittelberger <icedream@icedream.pw>  Sun, 01 May 2022 21:43:06 +0200
 
