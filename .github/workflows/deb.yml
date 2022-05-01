@@ -1,0 +1,17 @@
+name: deb
+
+on:
+  push:
+    branches: [ ubuntu-focal-backport ]
+  pull_request:
+    branches: [ ubuntu-focal-backport ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: jtdor/build-deb-action@v1
+        with:
+          buildpackage-opts: --build=binary --no-sign
+          docker-image: ubuntu:focal
